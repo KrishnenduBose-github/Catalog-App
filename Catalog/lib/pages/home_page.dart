@@ -1,12 +1,20 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_web_libraries_in_flutter
 
 import 'dart:convert';
+import 'package:catalog/myroutes.dart';
+import 'package:flutter/cupertino.dart';
+
+import 'dart:ui';
 
 import 'package:catalog/models/catalog.dart';
+import 'package:catalog/pages/themes.dart';
 import 'package:catalog/widgets/drawer.dart';
+import 'package:catalog/widgets/home_widgets/catalog_header.dart';
+import 'package:catalog/widgets/home_widgets/catalog_list_items.dart';
 import 'package:catalog/widgets/item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -36,27 +44,32 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          title: const Text(
-            "Catalog App",
-            textAlign: TextAlign.center,
+        backgroundColor: context.canvasColor,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.pushNamed(context, MyRoute.cartroute),
+          backgroundColor: context.theme.buttonColor,
+          child: Icon(
+            CupertinoIcons.cart,
+            color: Vx.white,
           ),
         ),
-        body: Center(
-            // ignore: avoid_unnecessary_containers
-            child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-                ? ListView.builder(
-                    itemCount: CatalogModel.items.length,
-                    itemBuilder: (context, index) {
-                      return ItemWidget(
-                        item: CatalogModel.items[index],
-                      );
-                    })
-                : Center(
-                    child: CircularProgressIndicator(),
-                  )),
+        body: SafeArea(
+          child: Container(
+            padding: Vx.m16,
+            child: Column(
+              children: [
+                CatalogHeader(),
+                // ignore: unnecessary_null_comparison
+                if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+                  CatalogList().expand()
+                else
+                  Center(
+                    child: CircularProgressIndicator().expand(),
+                  )
+              ],
+            ),
+          ),
+        ),
         drawer: MyDrawer());
   }
 }
