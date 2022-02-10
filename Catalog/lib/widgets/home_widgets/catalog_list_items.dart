@@ -1,10 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:catalog/models/cart_Model.dart';
 import 'package:catalog/models/catalog.dart';
 import 'package:catalog/pages/homepage_details.dart';
 import 'package:catalog/pages/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'AddtoCart.dart';
 
 import 'catalog_images.dart';
 
@@ -68,14 +70,9 @@ class CatalogItem extends StatelessWidget {
                     .xl
                     .color(context.theme.accentColor)
                     .make(),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            context.theme.buttonColor),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                    // ignore: prefer_const_constructors
-                    child: "Buy".text.color(Colors.white).bold.make())
+                AddtoCart(
+                  catalog: catalog,
+                )
               ],
             ).pOnly(right: 2.0)
           ],

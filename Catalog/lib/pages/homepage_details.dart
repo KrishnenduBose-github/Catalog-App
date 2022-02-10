@@ -2,6 +2,7 @@
 
 import 'package:catalog/models/catalog.dart';
 import 'package:catalog/pages/themes.dart';
+import 'package:catalog/widgets/home_widgets/AddtoCart.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -31,16 +32,9 @@ class HomepageDetails extends StatelessWidget {
                 .bold
                 .xl3
                 .make(),
-            ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            context.theme.buttonColor),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                    // ignore: prefer_const_constructors
-                    child:
-                        "Buy".text.xl.color(MyThemes().creamColor).bold.make())
-                .wh(100, 50)
+            AddtoCart(
+              catalog: catalog,
+            ).wh(100, 50)
           ],
         ),
       ),

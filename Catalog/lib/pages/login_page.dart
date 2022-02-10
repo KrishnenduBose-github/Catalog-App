@@ -18,17 +18,18 @@ class _LoginPageState extends State<LoginPage> {
   String animationType = "idle";
   final passwordController = TextEditingController();
   final passwordFocusNode = FocusNode();
+  final usernameFocusNode = FocusNode();
 
   @override
   void initState() {
     passwordFocusNode.addListener(() {
       if (passwordFocusNode.hasFocus) {
         setState(() {
-          animationType = "test";
+          animationType = "hands_up";
         });
       } else {
         setState(() {
-          animationType = "idle";
+          animationType = "hands_down";
         });
       }
     });
@@ -71,9 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                     backgroundColor: context.theme.accentColor,
                     child: ClipOval(
                       child: new FlareActor(
-                        "assets/images/animation/teddy_test.flr",
+                        "assets/images/animation/Teddy.flr",
                         alignment: Alignment.center,
-                        fit: BoxFit.contain,
+                        fit: BoxFit.fill,
                         animation: animationType,
                       ),
                     ),
@@ -99,6 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextFormField(
+                      focusNode: usernameFocusNode,
                       style: TextStyle(color: context.accentColor),
                       decoration: InputDecoration(
                         hintStyle: TextStyle(color: context.theme.accentColor),

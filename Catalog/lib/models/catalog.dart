@@ -1,7 +1,14 @@
+// ignore_for_file: unrelated_type_equality_checks, null_closures
+
 import 'dart:convert';
 
 class CatalogModel {
   static List<Item> items = [];
+
+  Item getbyPosition(int index) => items[index];
+
+  Item getbyId(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
 }
 
 class Item {
