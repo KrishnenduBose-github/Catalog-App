@@ -26,7 +26,7 @@ class HomepageDetails extends StatelessWidget {
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           children: [
-            "\$${catalog.price}"
+            "Rs.${catalog.price}"
                 .text
                 .color(context.theme.accentColor)
                 .bold

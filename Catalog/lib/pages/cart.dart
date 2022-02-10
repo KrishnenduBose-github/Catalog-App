@@ -43,11 +43,12 @@ class _CartTotal extends StatelessWidget {
           VxBuilder(
             mutations: {RemoveMutation},
             builder: (context, _, __) {
-              return "\$${_cart.totalprice}"
+              return "Rs.${_cart.totalprice}"
                   .text
-                  .xl5
+                  .xl2
                   .color(context.theme.accentColor)
-                  .make();
+                  .make()
+                  .p12();
             },
           ),
           30.widthBox,

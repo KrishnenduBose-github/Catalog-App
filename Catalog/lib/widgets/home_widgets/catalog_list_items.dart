@@ -64,7 +64,7 @@ class CatalogItem extends StatelessWidget {
             ButtonBar(
               alignment: MainAxisAlignment.spaceBetween,
               children: [
-                "\$${catalog.price}"
+                "Rs.${catalog.price}"
                     .text
                     .bold
                     .xl
